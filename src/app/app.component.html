@@ -5,15 +5,14 @@
   </button>
   <span>Galería de Productos</span>
   <span class="example-spacer"></span>
-<!--   
-  <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-    <mat-icon>favorite</mat-icon>
-  </button>
-  <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-    <mat-icon>share</mat-icon>
-  </button> 
--->
 </mat-toolbar>
 
 
 <router-outlet></router-outlet>
+
+<!-- Footer-->
+<mat-divider></mat-divider>
+<div class="footer">
+  <fa-icon [icon]="icon" size="lg"></fa-icon>
+  <h3>Código en GitHub: <a mat-button color="primary" href="https://github.com/VicmarStephany/products-app/tree/master">VicmarStephany</a></h3>
+</div>

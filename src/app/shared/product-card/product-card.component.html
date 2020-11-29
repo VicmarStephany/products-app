@@ -1,14 +1,15 @@
 <div class="content">
     <mat-card class="card">
         <div class="image">
-            <img mat-card-image src="assets/{{product.image}}.jpg" alt="">
+            <img mat-card-image src="{{product.image}}" alt="">
         </div>
         <mat-card-content>
-            <h3>{{ product.name}}</h3>
-            <p>{{ product.description}}</p>
+            <h3>{{ product.name | titlecase}}</h3>
+            <p>{{ product.description }}</p>
         </mat-card-content>
         <mat-card-actions>
-            <button mat-button [routerLink]="['/edit-product', product.id]">Editar</button>
+            <button mat-raised-button color="accent" [routerLink]="['/edit-product', product.id]">Editar</button>
+            <button mat-raised-button color="warn" (click)="confirmDelete(product.id)">Eliminar</button>
           </mat-card-actions>
     </mat-card>
 </div>

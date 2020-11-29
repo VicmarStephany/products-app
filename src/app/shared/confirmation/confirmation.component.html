@@ -1,0 +1,10 @@
+<div>
+    <h2 mat-dialog-title>¿Desea eliminar este producto?</h2>
+    <div mat-dialog-content>
+        <p>Una vez eliminado el producto desaparecerá del inventario</p>
+    </div>
+    <div mat-dialog-actions class="actions">
+        <button mat-flat-button (click)="onNoClick()">Cancelar</button>
+        <button mat-flat-button color="warn" [mat-dialog-close]="data.confirmation" cdkFocusInitial>Eliminar</button>
+    </div>
+</div>

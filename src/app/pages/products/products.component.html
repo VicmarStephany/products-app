@@ -3,13 +3,14 @@
     <!--Header-->
     <div class="header">
         <h2>Productos</h2>
+        <button mat-button color="primary" (click)="openModal()">Añadir producto</button>
     </div>
 
     <!-- Main -->
-    <div class="main">
+    <div class="main" *ngIf="products.length > 0">
         <div class="flex" *ngFor="let product of products">
             <app-product-card [product]='product'></app-product-card>
         </div>
-
     </div>
+
 </div>

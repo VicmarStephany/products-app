@@ -1,0 +1,22 @@
+.container{
+
+    .header{
+
+    }
+
+    .main{
+
+        form{
+            display: flex;
+            flex-direction: column;
+
+            mat-error{
+                margin-bottom: 10px;
+            }
+
+            .preview-image{
+                max-width: 200px;
+            }
+        }
+    }
+}

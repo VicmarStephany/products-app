@@ -1,0 +1,55 @@
+<div class="container">
+    <!--Header-->
+    <div class="header">
+        <h2>Crear producto</h2>
+    </div>
+
+    <!--Main-->
+    <div class="main">
+        <form [formGroup]="product">
+
+            <mat-form-field appearance="outline">
+                <mat-label>Nombre</mat-label>
+                <input matInput formControlName="name" placeholder="Nombre del producto">
+                <mat-error *ngIf="product.controls['name'].hasError('required')">
+                    Campo requerido
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Descripción</mat-label>
+                <textarea matInput formControlName="description" placeholder="Descripción del producto"></textarea>
+                <mat-error *ngIf="product.controls['description'].hasError('required')">
+                    Campo requerido
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Imagen</mat-label>
+                <ngx-mat-file-input accept="image/*" formControlName="image" placeholder="Eliga una imagen">
+                </ngx-mat-file-input>
+                <mat-icon matSuffix>folder</mat-icon>
+                <mat-error *ngIf="product.controls['image'].hasError('required')">
+                    Por favor, elija un imagen.
+                </mat-error>
+                <mat-error *ngIf="product.controls['image'].hasError('image')">
+                    Formato inválido. Elija una imagen con formato .JPG, .JPEG o .PNG
+                </mat-error>
+            </mat-form-field>
+            <img
+            *ngIf="imgPreview"
+            [src]="imgPreview"
+            class="preview-image"
+            />
+
+
+            <button mat-raised-button color="primary" [disabled]="product.invalid || submitted"
+                (click)="createProduct()">
+                Añadir producto
+            </button>
+
+            <mat-progress-bar *ngIf="submitted" [value]="uploadProgress$ | async" mode="determinate">
+            </mat-progress-bar>
+        </form>
+    </div>
+</div>

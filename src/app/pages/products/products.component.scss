@@ -1,6 +1,16 @@
 .content{
     padding: 25px 50px;
 
+    .header{
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+
+        button{
+            font-size: 18px;
+        }
+    }
+
     .main{
         flex-direction: row;
         display: flex;
