@@ -1,1 +1,55 @@
-<p>edit-product works!</p>
+<div class="container">
+    <!--Header-->
+    <div class="header">
+        <h2>Editar producto</h2>
+    </div>
+
+    <!--Main-->
+    <div class="main">
+        <form [formGroup]="productEdit">
+
+            <mat-form-field appearance="outline">
+                <mat-label>Nombre</mat-label>
+                <input matInput formControlName="name" placeholder="dataModal.product.name | titlecase">
+                <mat-error *ngIf="productEdit.controls['name'].hasError('required')">
+                    Campo requerido
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Descripción</mat-label>
+                <textarea matInput formControlName="description" placeholder="dataModal.product.description"></textarea>
+                <mat-error *ngIf="productEdit.controls['description'].hasError('required')">
+                    Campo requerido
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Imagen</mat-label>
+                <ngx-mat-file-input accept="image/*" formControlName="image" placeholder="Eliga una imagen">
+                </ngx-mat-file-input>
+                <mat-icon matSuffix>folder</mat-icon>
+                <mat-error *ngIf="productEdit.controls['image'].hasError('required')">
+                    Por favor, elija un imagen.
+                </mat-error>
+                <mat-error *ngIf="productEdit.controls['image'].hasError('image')">
+                    Formato inválido. Elija una imagen con formato .JPG, .JPEG o .PNG
+                </mat-error>
+            </mat-form-field>
+            <img
+            *ngIf="imgPreview"
+            [src]="imgPreview"
+            class="preview-image"
+            />
+
+
+            <button mat-raised-button color="primary" [disabled]="productEdit.invalid || submitted"
+                (click)="editProduct()">
+                Editar producto
+            </button>
+
+            <mat-progress-bar *ngIf="submitted" [value]="uploadProgress$ | async" mode="determinate">
+            </mat-progress-bar>
+        </form>
+    </div>
+</div>

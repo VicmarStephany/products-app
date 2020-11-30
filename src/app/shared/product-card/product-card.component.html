@@ -8,7 +8,7 @@
             <p>{{ product.description }}</p>
         </mat-card-content>
         <mat-card-actions>
-            <button mat-raised-button color="accent" [routerLink]="['/edit-product', product.id]">Editar</button>
+            <button mat-raised-button color="accent" (click)="editProduct()">Editar</button>
             <button mat-raised-button color="warn" (click)="confirmDelete(product.id)">Eliminar</button>
           </mat-card-actions>
     </mat-card>

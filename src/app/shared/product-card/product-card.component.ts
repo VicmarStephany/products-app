@@ -24,11 +24,16 @@ export class ProductCardComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  editProduct(id) {
+  editProduct() {
     const dialogRef = this.dialog.open(EditProductComponent, {
       //width: '250px',
-      data: { id: id }
+      data: { product: this.product }
     });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+    })
+
   }
 
   /**Confirm the delete action

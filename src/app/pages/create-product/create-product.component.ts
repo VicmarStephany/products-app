@@ -5,10 +5,10 @@ import { ProductModel } from 'src/app/models/product.model';
 import { FirebaseService } from 'src/app/services/firebase/firebase.service';
 import { AngularFireStorage } from "@angular/fire/storage";
 import { takeUntil, catchError } from "rxjs/operators";
-import { ValidateService } from 'src/app/services/validate/validate.service';
 import { StorageService } from 'src/app/services/storage/storage.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { STORAGE_PATH } from 'src/app/shared/utils/storage.const'
+import { STORAGE_PATH } from 'src/app/shared/utils/storage.const';
+import { image } from 'src/app/shared/utils/validators.custom'
 
 @Component({
   selector: 'app-create-product',
@@ -27,16 +27,15 @@ export class CreateProductComponent implements OnInit {
   downloadURL: Observable<string>;
   uploadProgress$: Observable<number>;
 
-  constructor(private fb: FormBuilder, private db: FirebaseService, private storage: AngularFireStorage,
-    private validateService: ValidateService, private storageService: StorageService,
-    private snackBar: MatSnackBar) { }
+  constructor(private fb: FormBuilder, private db: FirebaseService,
+              private storageService: StorageService, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
 
     this.product = this.fb.group({
       name: ['', Validators.required],
       description: ['', Validators.required],
-      image: [null, [Validators.required, this.image.bind(this)]]
+      image: [null, [Validators.required, image.bind(this)]]
     });
 
     this.product.get('image').valueChanges.pipe(takeUntil(this.destroy$)).subscribe((newValue) => {
@@ -86,22 +85,6 @@ export class CreateProductComponent implements OnInit {
       });
   }
 
-  /**Custom validator
-   * @description Validates the type of the image uploaded
-   * @param photoControl : FormControl
-   */
-  private image(photoControl: AbstractControl): { [key: string]: boolean } | null {
-    if (photoControl.value) {
-      const [image] = photoControl.value.files;
-      return this.validateService.validateFile(image)
-        ? null
-        : {
-          image: true,
-        };
-    }
-    return;
-  }
-
   /**Image preview
    * @description trigered everytime there's a change in the value of the image control.
    * @param image: File
@@ -112,7 +95,6 @@ export class CreateProductComponent implements OnInit {
     reader.onload = (loadEvent) => (this.imgPreview = loadEvent.target.result);
     reader.readAsDataURL(image);
   }
-
 
   ngOnDestroy() {
     this.destroy$.next(null);

@@ -38,7 +38,7 @@ export class FirebaseService {
   }
 
   /**Update product information */
-  updateUser(id, data){
+  updateProduct(id, data){
     return this.db.collection('products').doc(id).set(data);
   }
 

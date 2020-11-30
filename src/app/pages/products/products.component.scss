@@ -5,6 +5,12 @@
         display: flex;
         justify-content: space-between;
         flex-direction: row;
+        align-items: center;
+        margin-bottom: 15px;
+
+        h2{
+            margin: 0px;
+        }
 
         button{
             font-size: 18px;
