@@ -7,9 +7,9 @@ app.get('/*', function (req, res) {
     res.sendFile(path.join(__dirname + '/dist/prueba/index.html'));
 });
 */
-app.listen(process.env.PORT || 8080);
-
 app.get('/*', function (req, res) {
-    res.sendFile('index.html', { root: 'dist/<prueba/' }
+    res.sendFile('index.html', { root: 'dist/prueba/' }
     );
 });
+
+app.listen(process.env.PORT || 8080);
